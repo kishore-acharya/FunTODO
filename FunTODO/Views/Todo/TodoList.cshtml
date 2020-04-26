@@ -1,0 +1,13 @@
+﻿@model FunTODOWebSite.Models.Entity.TodoListViewModel
+@{
+    ViewData["Title"] = "TodoList";
+}
+
+<h1>TodoList</h1>
+<ul>
+    @foreach (var item in Model.todoList){
+    <li>
+        item.Text
+    </li>
+    }
+</ul>
