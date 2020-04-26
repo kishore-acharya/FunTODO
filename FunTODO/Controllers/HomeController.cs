@@ -20,6 +20,8 @@ namespace FunTODO.Controllers
 
         public IActionResult Index()
         {
+            //if user not verified
+            return this.RedirectToAction("login", "login", new { redirect = true });
             return View();
         }
 

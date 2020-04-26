@@ -1,11 +1,24 @@
 ﻿@model FunTODOWebSite.Models.Login.LoginModel
-    <head>
-        <link rel="stylesheet" href="~/css/Login.css" />
-    </head>
+@{
+    ViewData["Title"] = "Login";
+}
+<head>
+    <link rel="stylesheet" href="~/css/Login.css" />
+</head>
 <div class="container login-container">
+    @if (ViewBag.redirect == true)
+    {
+        <div class="alert alert-warning login-alert" role="alert">
+            @ViewBag.message
+        </div>
+    }
+    @{
+        ViewData["redirect"] = false;
+    }
+
     <form asp-action="">
         <div class="imgcontainer">
-            <img src="~/images/img_avatar.png" alt="Avatar" class="avatar">
+            <img src="~/images/User-02.svg" alt="Avatar" class="avatar">
         </div>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="container">
@@ -16,16 +29,16 @@
             <label asp-for="Password"><b>Password</b></label>
             <input asp-for="Password" type="password" placeholder="Enter Password" required>
             <span asp-validation-for="Password" class="text-danger"></span>
-
             <button type="submit" class="btnSubmit">Login</button>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
         </div>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-        </div>
     </form>
+    <div class="container" style="background-color:#f1f1f1">
+        <a class="btn btn-outline-primary" asp-area="" asp-controller="Login" asp-action="Signup">
+            Create an account
+        </a>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
 </div>
