@@ -16,12 +16,19 @@ namespace FunTODOWebSite.Controllers
         {
             return View(new LoginModel());
         }
+
         [HttpPost]
         [Route("login")]
         public IActionResult Login(LoginModel login)
         {
             throw new NotImplementedException();
 
+        }
+        [HttpGet]
+        [Route("login/signup")]
+        public IActionResult Signup()
+        {
+            return View();
         }
     }
 }

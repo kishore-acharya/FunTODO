@@ -5,7 +5,7 @@
 <div class="container login-container">
     <form asp-action="">
         <div class="imgcontainer">
-            <img src="~/images/img_avatar.png" alt="Avatar" class="avatar">
+            <img src="~/images/User-02.svg" alt="Avatar" class="avatar">
         </div>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="container">
@@ -16,6 +16,7 @@
             <label asp-for="Password"><b>Password</b></label>
             <input asp-for="Password" type="password" placeholder="Enter Password" required>
             <span asp-validation-for="Password" class="text-danger"></span>
+            <span class="psw">Forgot <a href="#">password?</a></span>
 
             <button type="submit" class="btnSubmit">Login</button>
             <label>
@@ -24,8 +25,8 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <button type="button" class="btn btn-outline-primary">Create an account</button>
+            
         </div>
     </form>
 </div>
