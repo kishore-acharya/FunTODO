@@ -11,9 +11,14 @@ namespace FunTODOWebSite.Controllers
     public class LoginController : Controller
     {
         [HttpGet]
-        [Route("login")]
-        public IActionResult Login()
+        [Route("login/{redirect?}")]
+        public IActionResult Login(bool redirect)
         {
+            if (redirect)
+            {
+                ViewBag.redirect = true;
+                ViewBag.message = "Login or create an account to access FunTODO"; 
+            }
             return View(new LoginModel());
         }
 

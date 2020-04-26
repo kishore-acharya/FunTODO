@@ -2,31 +2,38 @@
     <head>
         <link rel="stylesheet" href="~/css/Login.css" />
     </head>
-<div class="container login-container">
-    <form asp-action="">
-        <div class="imgcontainer">
-            <img src="~/images/User-02.svg" alt="Avatar" class="avatar">
-        </div>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="container">
-            <label asp-for="UserName"><b>Username</b></label>
-            <input asp-for="UserName" type="text" placeholder="Enter Username" required>
-            <span asp-validation-for="UserName" class="text-danger"></span>
+    <div class="container login-container">
+        @if (ViewBag.redirect == true)
+        {
+            <div class="alert alert-warning" role="alert">
+                @ViewBag.message
+            </div>
+        }
 
-            <label asp-for="Password"><b>Password</b></label>
-            <input asp-for="Password" type="password" placeholder="Enter Password" required>
-            <span asp-validation-for="Password" class="text-danger"></span>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+        <form asp-action="">
+            <div class="imgcontainer">
+                <img src="~/images/User-02.svg" alt="Avatar" class="avatar">
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="container">
+                <label asp-for="UserName"><b>Username</b></label>
+                <input asp-for="UserName" type="text" placeholder="Enter Username" required>
+                <span asp-validation-for="UserName" class="text-danger"></span>
 
-            <button type="submit" class="btnSubmit">Login</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
+                <label asp-for="Password"><b>Password</b></label>
+                <input asp-for="Password" type="password" placeholder="Enter Password" required>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <span class="psw">Forgot <a href="#">password?</a></span>
 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="btn btn-outline-primary">Create an account</button>
-            
-        </div>
-    </form>
-</div>
+                <button type="submit" class="btnSubmit">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="btn btn-outline-primary">Create an account</button>
+
+            </div>
+        </form>
+    </div>
