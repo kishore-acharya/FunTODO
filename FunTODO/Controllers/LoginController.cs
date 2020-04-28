@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FunTODOWebSite.Models.Login;
-using Microsoft.AspNetCore.Http;
+﻿using FunTODOWebSite.Models.Login;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace FunTODOWebSite.Controllers
 {

@@ -1,9 +1,6 @@
 ﻿using FunTODOModels.Entity;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Text;
 
 namespace FunTODODataAccess
 {
@@ -11,10 +8,10 @@ namespace FunTODODataAccess
     {
 
         public IConfiguration configuration { get; set; }
-        public FuntodoDataBase(IConfiguration configuration):base(configuration)
+        public FuntodoDataBase(IConfiguration configuration) : base(configuration)
         {
 
-           
+
         }
         object TodoListByUserID(string iD)
         {

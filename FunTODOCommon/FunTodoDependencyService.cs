@@ -1,22 +1,17 @@
-﻿using System;
-using FunTODOCommon;
-using FunTODODataAccess;
+﻿using FunTODODataAccess;
 using FunTODODataAccess.Entities;
 using FunTODODataAccess.Individuals;
-using FunTODOLogic;
-using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOLogic.Security;
-using FunTODOModels;
 using FunTODOModels.Entity;
 using FunTODOModels.Individual;
-using FunTODORepository;
 using FunTODORepository.Entities;
+using FunTODORepository.Individuals;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FunTODOCommon
 {
-    public  class FunTodoDependencyService
+    public class FunTodoDependencyService
     {
 
         public static void ConfigureDependencies(IServiceCollection services)
@@ -24,8 +19,9 @@ namespace FunTODOCommon
             //Buisness Logic
             services.AddSingleton<ITodoProvider, TodoProvider>();
             //Repository
-            services.AddSingleton<IEntityListRepository<TodoList>,TodoListRepository>();
+            services.AddSingleton<IEntityListRepository<TodoList>, TodoListRepository>();
             services.AddSingleton<IEntityRepository<TodoItem>, TodoItemRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             //security
             services.AddScoped<ILogin, ProcessLogin>();
             //Data Access

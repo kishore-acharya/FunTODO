@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FunTODOWebSite
+﻿namespace FunTODOWebSite
 {
     public class TODOListTODO
     {

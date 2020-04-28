@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using FunTODOLogic;
-using FunTODOModels.Entity;
-using FunTODOLogic.Adapters;
+﻿using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
+using FunTODOModels.Entity;
 using FunTODOWebSite.Models.Entity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FunTODO.Controllers
 {

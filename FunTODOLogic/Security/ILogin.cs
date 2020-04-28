@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FunTODOLogic.Security
+﻿namespace FunTODOLogic.Security
 {
-    public interface ILogin:ITodoLogic
+    public interface ILogin : ITodoLogic
     {
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FunTODOModels.Entity
+﻿namespace FunTODOModels.Entity
 {
     public interface ITodoItem : IEntity, IDomainModel
     {

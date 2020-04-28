@@ -1,9 +1,9 @@
-﻿using FunTODORepository.Entities;
-using FunTODOModels.Entity;
+﻿using FunTODOModels.Entity;
+using FunTODORepository.Entities;
 
 namespace FunTODOLogic.Providers
 {
-    public class TodoProvider: ITodoProvider
+    public class TodoProvider : ITodoProvider
     {
         IEntityListRepository<TodoList> TodoListRepository;
         public TodoProvider(IEntityListRepository<TodoList> TodoListRepository)
@@ -13,7 +13,7 @@ namespace FunTODOLogic.Providers
         public TodoList GetTodoListForUserID(string UserID)
         {
             return TodoListRepository.GetByUserID(UserID);
-           
+
         }
     }
 }

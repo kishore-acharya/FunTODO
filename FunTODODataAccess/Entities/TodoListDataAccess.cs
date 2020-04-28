@@ -1,7 +1,5 @@
 ﻿using FunTODOModels.Entity;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FunTODODataAccess.Entities
 {
@@ -22,7 +20,7 @@ namespace FunTODODataAccess.Entities
         public TodoList GetByUserID(string iD)
         {
             throw new NotImplementedException();
-           
+
         }
     }
 }

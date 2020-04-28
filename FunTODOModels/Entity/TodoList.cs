@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FunTODOModels.Entity
 {
     public class TodoList : IEntityList<TodoItem>
     {
-        public IList<TodoItem> Items { get;set; }
+        public IList<TodoItem> Items { get; set; }
     }
 }

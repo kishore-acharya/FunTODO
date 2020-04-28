@@ -1,8 +1,5 @@
-﻿using FunTODOModels.Entity;
-using FunTODODataAccess;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FunTODODataAccess;
+using FunTODOModels.Entity;
 
 namespace FunTODORepository.Entities
 {

@@ -1,8 +1,6 @@
 ﻿using FunTODODataAccess;
 using FunTODOModels.Entity;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FunTODORepository.Entities
 {

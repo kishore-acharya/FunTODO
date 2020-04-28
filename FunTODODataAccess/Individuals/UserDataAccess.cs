@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FunTODOModels.Individual;
+﻿using FunTODOModels.Individual;
+using System;
 
 namespace FunTODODataAccess.Individuals
 {

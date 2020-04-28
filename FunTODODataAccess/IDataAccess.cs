@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FunTODOModels.Entity;
-
-namespace FunTODODataAccess
+﻿namespace FunTODODataAccess
 {
     public interface IDataAccess<T>
     {

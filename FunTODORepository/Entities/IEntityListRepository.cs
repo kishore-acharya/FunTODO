@@ -1,7 +1,4 @@
-﻿using FunTODOModels.Entity;
-using System.Collections.Generic;
-
-namespace FunTODORepository.Entities
+﻿namespace FunTODORepository.Entities
 {
     public interface IEntityListRepository<IEntityList>
     {

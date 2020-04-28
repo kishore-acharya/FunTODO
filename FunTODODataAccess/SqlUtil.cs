@@ -1,11 +1,7 @@
-﻿using FunTODOModels.Individual;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
-using System.Xml;
 
 namespace FunTODODataAccess
 {
@@ -23,7 +19,7 @@ namespace FunTODODataAccess
             {
                 using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(command,sqlconnection);
+                    SqlCommand cmd = new SqlCommand(command, sqlconnection);
                     cmd.CommandType = CommandType.Text;
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     // this will query your database and return the result to your datatable
@@ -38,7 +34,7 @@ namespace FunTODODataAccess
             {
                 return new DataTable();
             }
-                
+
         }
         public IEnumerable<IDataRecord> GetDataReader(string command)
         {
@@ -57,11 +53,11 @@ namespace FunTODODataAccess
             }
             //example for accepting yield
             //string result = GetGeneralInformation(RecID).First()["Status"].ToString();
-        } 
-         
-            
+        }
 
-        
+
+
+
         //public User GetUserByUserName()
         //{
         //    using (SqlConnection con = new SqlConnection(this.connectionString))

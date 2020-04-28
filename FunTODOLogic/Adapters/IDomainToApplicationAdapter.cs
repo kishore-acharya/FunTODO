@@ -1,9 +1,6 @@
-﻿using FunTODOLogic;
-using FunTODOModels.Entity;
-
-namespace FunTODOLogic.Adapters
+﻿namespace FunTODOLogic.Adapters
 {
-    public interface IDomainToApplicationAdapter<IDomainModel,IApplicationModel>:ITodoLogic
+    public interface IDomainToApplicationAdapter<IDomainModel, IApplicationModel> : ITodoLogic
     {
         IApplicationModel ConvertToApplication(IDomainModel domain);
     }

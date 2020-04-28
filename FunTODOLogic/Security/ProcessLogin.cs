@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FunTODOLogic.Security
+﻿namespace FunTODOLogic.Security
 {
-    public class ProcessLogin:ILogin
+    public class ProcessLogin : ILogin
     {
     }
 }

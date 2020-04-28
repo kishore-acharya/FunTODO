@@ -1,7 +1,5 @@
 ﻿using FunTODOModels.Entity;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FunTODODataAccess.Entities
 {
@@ -14,11 +12,11 @@ namespace FunTODODataAccess.Entities
             this.Database = database;
         }
 
-        public IDataBase DataBase { get; set ; }
+        public IDataBase DataBase { get; set; }
 
         public TodoItem GetByID(int iD)
         {
-           
+
             return new TodoItem("not from db");
         }
 
