@@ -21,7 +21,8 @@ namespace FunTODODataAccess.Individuals
 
         User IDataAccess<User>.GetByUserID(string iD)
         {
-            throw new NotImplementedException();
+            var table = Database.GetDataTable(String.Format("select * from users where ID = {0}", iD));
+            return new User();
         }
     }
 }

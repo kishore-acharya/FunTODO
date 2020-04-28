@@ -18,7 +18,7 @@ namespace FunTODODataAccess.Entities
 
         public TodoItem GetByID(int iD)
         {
-            var table  = DataBase.GetDataTable(String.Format("select * from users where ID = {0}",iD));
+           
             return new TodoItem("not from db");
         }
 

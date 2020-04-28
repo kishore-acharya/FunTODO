@@ -7,11 +7,11 @@ namespace FunTODODataAccess.Entities
 {
     public class TodoListDataAccess : IDataAccess<TodoList>
     {
-        private readonly SqlUtil sqlUtil;
+        private readonly IDataBase dataBase;
 
-        public TodoListDataAccess()
+        public TodoListDataAccess(IDataBase dataBase)
         {
-            this.sqlUtil = new SqlUtil();  
+            this.dataBase = dataBase;
         }
 
         public TodoList GetByID(int iD)
@@ -21,7 +21,8 @@ namespace FunTODODataAccess.Entities
 
         public TodoList GetByUserID(string iD)
         {
-            return DataBase.TodoListByUserID(iD) as TodoList;//database should return datatable and conversion should happen here
+            throw new NotImplementedException();
+           
         }
     }
 }
