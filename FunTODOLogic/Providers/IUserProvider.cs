@@ -1,6 +1,9 @@
-﻿namespace FunTODOLogic.Providers
+﻿using FunTODOModels.Individual;
+
+namespace FunTODOLogic.Providers
 {
-    interface IUserProvider
+    public interface IUserProvider
     {
+        User GetUserByUserName(string username);
     }
 }

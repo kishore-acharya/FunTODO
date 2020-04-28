@@ -18,12 +18,13 @@ namespace FunTODOCommon
         {
             //Buisness Logic
             services.AddSingleton<ITodoProvider, TodoProvider>();
+            services.AddSingleton<IUserProvider, UserProvider>();
             //Repository
             services.AddSingleton<IEntityListRepository<TodoList>, TodoListRepository>();
             services.AddSingleton<IEntityRepository<TodoItem>, TodoItemRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
             //security
-            services.AddScoped<ILogin, ProcessLogin>();
+            services.AddSingleton<ILogin, ProcessLogin>();
             //Data Access
             services.AddSingleton<IDataAccess<TodoList>, TodoListDataAccess>();
             services.AddSingleton<IDataAccess<TodoItem>, TodoItemDataAccess>();

@@ -19,8 +19,16 @@ namespace FunTODODataAccess.Individuals
 
         User IDataAccess<User>.GetByUserID(string iD)
         {
-            var table = Database.GetDataTable(String.Format("select * from users where ID = {0}", iD));
-            return new User();
+            const string quote = "\"";
+            var table = Database.GetDataTable("select * from UserMaster where username ='" + iD + "'");
+            return new User() {
+                ID = Int32.Parse(table.Rows[0]["ID"].ToString()),
+                UserID = table.Rows[0]["username"].ToString(),
+                FirstName= table.Rows[0]["firstname"].ToString(),
+                LastName= table.Rows[0]["lastname"].ToString(),
+                Password = table.Rows[0]["password"].ToString()
+
+            };
         }
     }
 }
