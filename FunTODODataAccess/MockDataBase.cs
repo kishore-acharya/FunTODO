@@ -1,13 +1,21 @@
 ﻿using FunTODOModels.Entity;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace FunTODODataAccess
 {
-    public class MockDataBase : IDataBase
+    public class MockDataBase : SqlUtil, IDataBase
     {
-       
+
+        public IConfiguration configuration { get; set; }
+        public MockDataBase(IConfiguration configuration):base(configuration)
+        {
+
+            var k = new FuntodoDataBase(configuration);
+        }
         object IDataBase.TodoListByUserID(string iD)
         {
             var todoListfromDB = new TodoList();

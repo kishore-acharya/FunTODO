@@ -9,6 +9,6 @@ namespace FunTODOModels.Individual
     {
         public int ID { get; set; }
         public String UserID { get; set; }
-        public String UserName { get; set; }
+        public String FirstName { get; set; }
     }
 }
