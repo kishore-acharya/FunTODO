@@ -7,10 +7,11 @@ namespace FunTODODataAccess.Entities
 {
     public class TodoListDataAccess : IDataAccess<TodoList>
     {
-        private IDataBase DataBase;
-        public TodoListDataAccess(IDataBase database)
+        private readonly SqlUtil sqlUtil;
+
+        public TodoListDataAccess()
         {
-            this.DataBase = database;  
+            this.sqlUtil = new SqlUtil();  
         }
 
         public TodoList GetByID(int iD)

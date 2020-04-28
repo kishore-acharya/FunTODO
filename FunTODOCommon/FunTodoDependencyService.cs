@@ -27,7 +27,7 @@ namespace FunTODOCommon
             //Data Access
             services.AddSingleton<IDataAccess<TodoList>, TodoListDataAccess>();
             services.AddSingleton<IDataAccess<TodoItem>, TodoItemDataAccess>();
-            services.AddSingleton<IDataBase, MockDataBase>();
+            services.AddSingleton<IDataBase, FuntodoDataBase>();
             
 
 
