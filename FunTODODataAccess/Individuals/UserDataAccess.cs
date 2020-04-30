@@ -26,8 +26,6 @@ namespace FunTODODataAccess.Individuals
                 UserID = table.Rows[0]["username"].ToString(),
                 FirstName= table.Rows[0]["firstname"].ToString(),
                 LastName= table.Rows[0]["lastname"].ToString(),
-                Password = table.Rows[0]["password"].ToString()
-
             };
         }
     }

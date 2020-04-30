@@ -1,8 +1,11 @@
 using FunTODOCommon;
 using FunTODOLogic.Adapters;
 using FunTODOModels.Entity;
+using FunTODOModels.Process;
 using FunTODOWebSite.Adapters;
 using FunTODOWebSite.Models.Entity;
+using FunTODOWebSite.Models.Login;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,8 +27,10 @@ namespace FunTODO
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();//understand
             //Register Website Only Dependencies
             services.AddSingleton<IDomainToApplicationAdapter<TodoList, TodoListViewModel>, TodoListAdapter>();
+            services.AddSingleton<IApplicationToDomainAdapter<LoginModel, LoginCredentials>,LoginAdapter>();
             //Register Common Dependencies
             FunTodoDependencyService.ConfigureDependencies(services);
         }
@@ -48,6 +53,13 @@ namespace FunTODO
             app.UseStaticFiles();
 
             app.UseRouting();
+            //var cookiePolicyOptions = new CookiePolicyOptions//default is lax , this is to set to something else
+            //{
+            //    MinimumSameSitePolicy = SameSiteMode.Strict,
+            //};
+            //app.UseCookiePolicy(cookiePolicyOptions);
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

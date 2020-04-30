@@ -1,6 +1,6 @@
 ﻿namespace FunTODOLogic
 {
-    public interface ITodoLogic
+    public interface IFunTodoLogic
     {
     }
 }

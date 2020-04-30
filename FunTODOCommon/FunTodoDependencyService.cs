@@ -24,7 +24,7 @@ namespace FunTODOCommon
             services.AddSingleton<IEntityRepository<TodoItem>, TodoItemRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
             //security
-            services.AddSingleton<ILogin, ProcessLogin>();
+            services.AddSingleton<ILoginProcessor, ProcessLogin>();
             //Data Access
             services.AddSingleton<IDataAccess<TodoList>, TodoListDataAccess>();
             services.AddSingleton<IDataAccess<TodoItem>, TodoItemDataAccess>();
