@@ -5,9 +5,10 @@ namespace FunTODODataAccess
 {
     public interface IDataBase
     {
-        DataTable GetDataTable(string command);
-
-        IEnumerable<IDataRecord> GetDataReader(string command);
-
+        DataTable GetDataTableFromQuery(string query);
+        IEnumerable<IDataRecord> GetDataReaderFromQuery(string query);
+        DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
+        IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
+        void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams);
     }
 }

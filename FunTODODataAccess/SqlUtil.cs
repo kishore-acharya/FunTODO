@@ -1,47 +1,49 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace FunTODODataAccess
 {
-    public class SqlUtil
+    public class SqlUtil : IDataBase
     {
         string connectionString;
-        protected SqlUtil(IConfiguration configuration)
+        public SqlUtil(IConfiguration configuration)
         {
             this.connectionString = configuration.GetConnectionString("FuntoDB");
 
         }
-        public DataTable GetDataTable(string command)
+        public DataTable GetDataTableFromQuery(string query)
         {
             try
             {
                 using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand(command, sqlconnection);
-                    cmd.CommandType = CommandType.Text;
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
-                    // this will query your database and return the result to your datatable
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-                    sqlconnection.Close();
-                    return dataTable;
-
+                    using (SqlCommand cmd = new SqlCommand(query, sqlconnection))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                        // this will query your database and return the result to your datatable
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        sqlconnection.Close();
+                        return dataTable;
+                    }
                 }
             }
-            catch
+            catch (Exception)
             {
                 return new DataTable();
             }
 
         }
-        public IEnumerable<IDataRecord> GetDataReader(string command)
+        public IEnumerable<IDataRecord> GetDataReaderFromQuery(string query)
         {
 
             using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
             {
-                SqlCommand sqlCommand = new SqlCommand(command, sqlconnection);
+                SqlCommand sqlCommand = new SqlCommand(query, sqlconnection);
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 sqlCommand.CommandType = CommandType.Text;
                 sqlconnection.Open();
@@ -50,35 +52,81 @@ namespace FunTODODataAccess
                 {
                     yield return reader;
                 }
+                sqlconnection.Close();
             }
             //example for accepting yield
-            //string result = GetGeneralInformation(RecID).First()["Status"].ToString();
+            //string result = GetGeneralInformation(command).First()["Status"].ToString();
         }
 
+        public DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        {
 
+            try
+            {
+                using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                        sqlconnection.Open();
+                        DataTable dataTable = new DataTable();
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+                        dataAdapter.Fill(dataTable);
+                        sqlconnection.Close();
+                        return dataTable;
+                        //cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return new DataTable();
+            }
 
+        }
+        public IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        {
 
-        //public User GetUserByUserName()
-        //{
-        //    using (SqlConnection con = new SqlConnection(this.connectionString))
-        //    {
-        //        SqlCommand cmd = new SqlCommand("SELECT * FROM UserMaster", con);
-        //        cmd.CommandType = CommandType.Text;
-        //        con.Open();
-        //        SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //        // this will query your database and return the result to your datatable
-        //        da.Fill(dataTable);
-        //        //while (sqlDataReader.Read())
-        //        //{
-        //        //    var user = new User();
+            using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                    sqlconnection.Open();
+                    sqlconnection.Open();
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        yield return reader;
+                    }
+                    sqlconnection.Close();
+                }
+            }
 
-        //        //    user.ID = Convert.ToInt32(sqlDataReader["ID"]);
-        //        //    user.UserID = sqlDataReader["username"].ToString();
-        //        //    user.FirstName = sqlDataReader["firstname"].ToString();
-        //        //}
+        }
+        public void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        {
+            try
+            {
+                using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                        sqlconnection.Open();
+                        cmd.ExecuteNonQuery();
+                        sqlconnection.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
 
-        //    }
-        //}
-
+                throw;
+            }
+        }
     }
 }

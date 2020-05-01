@@ -20,7 +20,7 @@ namespace FunTODODataAccess.Individuals
         User IDataAccess<User>.GetByUserID(string iD)
         {
             const string quote = "\"";
-            var table = Database.GetDataTable("select * from UserMaster where username ='" + iD + "'");
+            var table = Database.GetDataTableFromQuery("select * from UserMaster where username ='" + iD + "'");
             return new User() {
                 ID = Int32.Parse(table.Rows[0]["ID"].ToString()),
                 UserID = table.Rows[0]["username"].ToString(),

@@ -13,8 +13,10 @@ namespace FunTODODataAccess
 
 
         }
+        //TODO:implement factory pattern here or somewhere beter
         object TodoListByUserID(string iD)
         {
+            
             var todoListfromDB = new TodoList();
             todoListfromDB.Items = new List<TodoItem>();
             todoListfromDB.Items.Add(new TodoItem("ItemA"));
