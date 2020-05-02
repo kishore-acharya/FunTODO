@@ -28,12 +28,12 @@ namespace FunTODORepository.Entities
             return TodoListDataAccess.GetAllByUsername(identification,individual.UserName);
         }
 
-        public ITodoList Set(TodoList entity, IIndividual individual)
+        public TodoList Set(TodoList entity, IIndividual individual)
         {
             return TodoListDataAccess.SetByUsername(entity, individual.UserName);
         }
 
-        public ITodoList Update(TodoList entity, IIndividual individual)
+        public TodoList Update(TodoList entity, IIndividual individual)
         {
             return TodoListDataAccess.UpdateByUsername(entity, individual.UserName);
         }

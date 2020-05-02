@@ -1,6 +1,7 @@
 ﻿using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOModels.Entity;
+using FunTODOWebSite.Controllers;
 using FunTODOWebSite.Models.Entity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FunTODO.Controllers
 {
-    public class TodoController : Controller
+    public class TodoController : BaseController
     {
         private readonly ITodoProvider TodoProvider;
         private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> TodoListAdapter;
@@ -31,13 +32,13 @@ namespace FunTODO.Controllers
         /// <returns></returns>
         [Route("Todo/TodoList/{userID?}")]
         [Authenticate]
-        public IActionResult TodoList(string userID)
+        public IActionResult TodoList(string listID)
         {
             var claims = HttpContext.User.Claims;
             bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
 
-            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetTodoListForUserID(userID));
+            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetTodoListForUserID(listID,base.GetUser()));
             return View(todoListViewModel);
         }
     }

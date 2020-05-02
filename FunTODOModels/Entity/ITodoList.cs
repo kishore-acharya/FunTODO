@@ -2,8 +2,8 @@
 
 namespace FunTODOModels.Entity
 {
-    public interface ITodoList:IEntity
+    public interface ITodoList<T>:IEntity
     {
-        IList<ITodoItem> TodoItemList { get; set; }
+        IList<T> TodoItemList { get; set; }
     }
 }

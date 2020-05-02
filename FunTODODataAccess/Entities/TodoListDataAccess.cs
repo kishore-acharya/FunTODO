@@ -39,12 +39,12 @@ namespace FunTODODataAccess.Entities
             throw new NotImplementedException();
         }
 
-        public ITodoList SetByUsername(object identification, string userName)
+        public TodoList SetByUsername(object identification, string userName)
         {
             throw new NotImplementedException();
         }
 
-        public ITodoList UpdateByUsername(object identification, string userName)
+        public TodoList UpdateByUsername(object identification, string userName)
         {
             throw new NotImplementedException();
         }

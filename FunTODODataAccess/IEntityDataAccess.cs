@@ -11,7 +11,7 @@ namespace FunTODODataAccess
         IEntity GetByUsername(string identification, string userName);
         bool DeleteByUserName(string identification, string userName);
         IEnumerable<IEntity> GetAllByUsername(string identification, string userName);
-        ITodoList SetByUsername(object identification, string userName);
-        ITodoList UpdateByUsername(object identification, string userName);
+        IEntity SetByUsername(object identification, string userName);
+        IEntity UpdateByUsername(object identification, string userName);
     }
 }
