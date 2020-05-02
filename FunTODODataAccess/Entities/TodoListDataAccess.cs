@@ -17,7 +17,7 @@ namespace FunTODODataAccess.Entities
             throw new NotImplementedException();
         }
 
-        public TodoList GetByUserID(string iD)
+        public TodoList GetByUsername(string iD)
         {
             throw new NotImplementedException();
 

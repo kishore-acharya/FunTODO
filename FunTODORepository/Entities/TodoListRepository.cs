@@ -13,7 +13,7 @@ namespace FunTODORepository.Entities
 
         public TodoList GetByUserID(string ID)
         {
-            return TodoListDataAccess.GetByUserID(ID);
+            return TodoListDataAccess.GetByUsername(ID);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace FunTODODataAccess.Entities
             return new TodoItem("not from db");
         }
 
-        public TodoItem GetByUserID(string iD)
+        public TodoItem GetByUsername(string iD)
         {
             throw new NotImplementedException();
         }

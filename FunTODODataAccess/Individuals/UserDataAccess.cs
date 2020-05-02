@@ -17,7 +17,7 @@ namespace FunTODODataAccess.Individuals
             throw new NotImplementedException();
         }
 
-        User IDataAccess<User>.GetByUserID(string iD)
+        User IDataAccess<User>.GetByUsername(string iD)
         {
             const string quote = "\"";
             var table = Database.GetDataTableFromQuery("select * from UserMaster where username ='" + iD + "'");

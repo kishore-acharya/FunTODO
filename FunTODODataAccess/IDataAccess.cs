@@ -2,7 +2,7 @@
 {
     public interface IDataAccess<T>
     {
-        T GetByUserID(string iD);
+        T GetByUsername(string iD);
         T GetByID(int iD);
     }
 }

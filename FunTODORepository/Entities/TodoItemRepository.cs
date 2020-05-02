@@ -18,7 +18,7 @@ namespace FunTODORepository.Entities
 
         public TodoItem GetByUserID(string ID)
         {
-            return this.TodoDataAccess.GetByUserID(ID);
+            return this.TodoDataAccess.GetByUsername(ID);
         }
     }
 }
