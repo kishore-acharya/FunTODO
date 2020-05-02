@@ -10,7 +10,7 @@ namespace FunTODOWebSite.Adapters
         public TodoListViewModel ConvertToApplication(TodoList domain)
         {
             var application = new TodoListViewModel();
-            application.todoList = domain.Items;
+            application.todoList = domain.TodoItemList;
             return application;
         }
 

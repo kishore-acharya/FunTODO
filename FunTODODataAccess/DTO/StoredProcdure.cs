@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace FunTODODataAccess
+namespace FunTODODataAccess.DTO
 {
     public class StoredProcdureWithParams
     {

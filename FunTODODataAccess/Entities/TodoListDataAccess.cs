@@ -1,9 +1,10 @@
 ﻿using FunTODOModels.Entity;
 using System;
+using System.Collections.Generic;
 
 namespace FunTODODataAccess.Entities
 {
-    public class TodoListDataAccess : IDataAccess<TodoList>
+    public class TodoListDataAccess : IEntityDataAccess<TodoList>
     {
         private readonly IDataBase dataBase;
 
@@ -12,15 +13,40 @@ namespace FunTODODataAccess.Entities
             this.dataBase = dataBase;
         }
 
+        public bool DeleteByUserName(string identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TodoList> GetAllByUsername(string identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
         public TodoList GetByID(int iD)
         {
             throw new NotImplementedException();
         }
 
-        public TodoList GetByUsername(string iD)
+        public TodoList GetByUsername(string iD, FunTODOModels.Individual.IIndividual individual)
         {
             throw new NotImplementedException();
 
+        }
+
+        public TodoList GetByUsername(string identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITodoList SetByUsername(object identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITodoList UpdateByUsername(object identification, string userName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

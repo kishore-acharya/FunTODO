@@ -2,8 +2,9 @@
 
 namespace FunTODOModels.Entity
 {
-    public class TodoList : IEntityList<TodoItem>
+    public class TodoList : ITodoList
     {
-        public IList<TodoItem> Items { get; set; }
+        private IList<ITodoItem> todoItemList;
+        public IList<ITodoItem> TodoItemList { get => this.todoItemList; set =>this.todoItemList=value; }
     }
 }

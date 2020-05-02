@@ -6,9 +6,9 @@ namespace FunTODORepository.Individuals
 {
     public class UserRepository : IUserRepository
     {
-        private readonly IDataAccess<User> userDataAccess;
+        private readonly IIndividualDataAccess<User> userDataAccess;
 
-        public UserRepository(IDataAccess<User> userDataAccess)
+        public UserRepository(IIndividualDataAccess<User> userDataAccess)
         {
             this.userDataAccess = userDataAccess;
         }

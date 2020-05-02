@@ -1,6 +1,8 @@
 ﻿namespace FunTODOModels.Individual
 {
-    interface IIndividual
+    public interface IIndividual
     {
+        int ID { get; set; }
+        string UserName { get; set; }
     }
 }

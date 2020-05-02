@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace FunTODORepository.Entities
 {
-    public interface IEntityRepository<IEntity>
+    public interface IEntityRepository<T,IIndividual>
     {
-        IEnumerable<IEntity> GetAll();
-        IEntity GetByUserID(string ID);
+        T Get(string identification,IIndividual individual);
+        IEnumerable<T> GetAll(string identification, IIndividual individual);
+        T Set(T entity,IIndividual individual);
+        T Update(T entity, IIndividual individual);
+        bool Delete(string identification, IIndividual individual);
     }
 
 }

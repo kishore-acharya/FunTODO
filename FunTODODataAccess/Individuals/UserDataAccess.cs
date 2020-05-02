@@ -3,7 +3,7 @@ using System;
 
 namespace FunTODODataAccess.Individuals
 {
-    public class UserDataAccess : IDataAccess<User>
+    public class UserDataAccess : IIndividualDataAccess<User>
     {
 
         private IDataBase Database;
@@ -12,21 +12,32 @@ namespace FunTODODataAccess.Individuals
         {
             this.Database = database;
         }
-        User IDataAccess<User>.GetByID(int iD)
+
+        public bool DeleteIndividualByUserName(string userName)
         {
             throw new NotImplementedException();
         }
 
-        User IDataAccess<User>.GetByUsername(string iD)
+        public User GetByID(int iD)
         {
-            const string quote = "\"";
-            var table = Database.GetDataTableFromQuery("select * from UserMaster where username ='" + iD + "'");
-            return new User() {
-                ID = Int32.Parse(table.Rows[0]["ID"].ToString()),
-                UserID = table.Rows[0]["username"].ToString(),
-                FirstName= table.Rows[0]["firstname"].ToString(),
-                LastName= table.Rows[0]["lastname"].ToString(),
-            };
+            throw new NotImplementedException();
         }
+
+        public User GetByUsername(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SetIndividualDetials(User individual)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateIndividualDetails(User individual)
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }

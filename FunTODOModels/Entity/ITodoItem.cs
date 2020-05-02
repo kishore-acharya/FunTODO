@@ -1,7 +1,7 @@
 ﻿namespace FunTODOModels.Entity
 {
-    public interface ITodoItem : IEntity, IDomainModel
+    public interface ITodoItem : IEntity
     {
-        string Text { get; set; }
+        string TextValue { get; set; }
     }
 }

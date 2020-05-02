@@ -20,16 +20,14 @@ namespace FunTODOCommon
             services.AddSingleton<ITodoProvider, TodoProvider>();
             services.AddSingleton<IUserProvider, UserProvider>();
             //Repository
-            services.AddSingleton<IEntityListRepository<TodoList>, TodoListRepository>();
-            services.AddSingleton<IEntityRepository<TodoItem>, TodoItemRepository>();
+            services.AddSingleton<IEntityRepository<TodoList, IIndividual>, TodoListRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
             //security
             services.AddSingleton<ILoginProcessor, ProcessLogin>();
             //Data Access
-            services.AddSingleton<IDataAccess<TodoList>, TodoListDataAccess>();
-            services.AddSingleton<IDataAccess<TodoItem>, TodoItemDataAccess>();
-            services.AddSingleton<IDataAccess<User>, UserDataAccess>();
-            services.AddSingleton<IDataBase, FuntodoDataBase>();
+            services.AddSingleton<IEntityDataAccess<TodoList>, TodoListDataAccess>();
+            services.AddSingleton<IIndividualDataAccess<User>, UserDataAccess>();
+            services.AddSingleton<IDataBase, SqlUtil>();
 
         }
     }
