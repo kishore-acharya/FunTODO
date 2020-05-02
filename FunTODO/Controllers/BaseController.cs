@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FunTODOLogic.Providers;
 using FunTODOModels.Individual;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,15 +12,24 @@ namespace FunTODOWebSite.Controllers
 {
     public class BaseController : Controller
     {
-        // GET: /<controller>/
-        public IActionResult Index()
+        private readonly IUserProvider userProvider;
+
+        public BaseController(IUserProvider userProvider) 
         {
-            return View();
+            this.userProvider = userProvider;
         }
 
-        internal IIndividual GetUser()
+       
+
+        public IIndividual GetUser()
         {
-            throw new NotImplementedException();
+            var user = HttpContext.User;
+            if (user.Identity.IsAuthenticated)
+            {
+                return userProvider.GetUserByUserName(user.Identity.Name);
+            }
+            return null;
+            
         }
     }
 }

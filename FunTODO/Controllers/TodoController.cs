@@ -14,7 +14,7 @@ namespace FunTODO.Controllers
     {
         private readonly ITodoProvider TodoProvider;
         private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> TodoListAdapter;
-        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter)
+        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter,IUserProvider userProvider) :base(userProvider)
         {
             this.TodoProvider = TodoProvider;
             this.TodoListAdapter = todoListAdapter;
