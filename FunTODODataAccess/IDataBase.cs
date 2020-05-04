@@ -1,12 +1,15 @@
-﻿using FunTODOModels.Entity;
-using System;
+﻿using FunTODODataAccess.DTO;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
 
 namespace FunTODODataAccess
 {
     public interface IDataBase
     {
-        object TodoListByUserID(string iD);
+        DataTable GetDataTableFromQuery(string query);
+        IEnumerable<IDataRecord> GetDataReaderFromQuery(string query);
+        DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
+        IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
+        void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams);
     }
 }

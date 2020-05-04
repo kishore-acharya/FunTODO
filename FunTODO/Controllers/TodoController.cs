@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using FunTODOLogic;
-using FunTODOModels.Entity;
-using FunTODOLogic.Adapters;
+﻿using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
+using FunTODOModels.Entity;
+using FunTODOWebSite.Controllers;
 using FunTODOWebSite.Models.Entity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FunTODO.Controllers
 {
-    public class TodoController : Controller
+    public class TodoController : BaseController
     {
         private readonly ITodoProvider TodoProvider;
         private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> TodoListAdapter;
-        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter)
+        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter,IUserProvider userProvider) :base(userProvider)
         {
             this.TodoProvider = TodoProvider;
             this.TodoListAdapter = todoListAdapter;
@@ -29,9 +31,14 @@ namespace FunTODO.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("Todo/TodoList/{userID?}")]
-        public IActionResult TodoList(string userID)
+        [Authorize(Roles = "NormalUser")]
+        public IActionResult TodoList(string listID)
         {
-            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetTodoListForUserID(userID));
+            var claims = HttpContext.User.Claims;
+            bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
+
+            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetTodoListForUserID(listID,base.GetUser()));
             return View(todoListViewModel);
         }
     }

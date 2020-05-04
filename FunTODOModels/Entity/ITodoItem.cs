@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FunTODOModels.Entity
+﻿namespace FunTODOModels.Entity
 {
-    public interface ITodoItem : IEntity, IDomainModel
+    public interface ITodoItem : IEntity
     {
-        string Text { get; set; }
+        string TextValue { get; set; }
     }
 }

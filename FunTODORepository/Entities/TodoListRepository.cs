@@ -1,22 +1,51 @@
-﻿using FunTODOModels.Entity;
-using FunTODODataAccess;
-using System;
+﻿using FunTODODataAccess;
+using FunTODOModels.Entity;
+using FunTODOModels.Individual;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FunTODORepository.Entities
 {
-    public class TodoListRepository : IEntityListRepository<TodoList>
+    public class TodoListRepository : IEntityRepository<TodoList, IIndividual>
     {
-        IDataAccess<TodoList> TodoListDataAccess;
-        public TodoListRepository(IDataAccess<TodoList> TodoListDataAccess)
+        IEntityDataAccess<TodoList> TodoListDataAccess;
+        public TodoListRepository(IEntityDataAccess<TodoList> TodoListDataAccess)
         {
             this.TodoListDataAccess = TodoListDataAccess;
         }
 
-        public TodoList GetByUserID(string ID)
+        public bool Delete(string identification, IIndividual individual)
         {
-            return TodoListDataAccess.GetByUserID(ID);
+            return TodoListDataAccess.DeleteByUserName(identification, individual.UserName);
+        }
+
+        public TodoList Get(string identification, IIndividual individual)
+        {
+            return TodoListDataAccess.GetByUsername(identification,individual.UserName);
+        }
+
+        public IEnumerable<TodoList> GetAll(string identification, IIndividual individual)
+        {
+            return TodoListDataAccess.GetAllByUsername(identification,individual.UserName);
+        }
+
+        public TodoList Set(TodoList entity, IIndividual individual)
+        {
+            return TodoListDataAccess.SetByUsername(entity, individual.UserName);
+        }
+
+        public TodoList Update(TodoList entity, IIndividual individual)
+        {
+            return TodoListDataAccess.UpdateByUsername(entity, individual.UserName);
+        }
+
+        TodoList IEntityRepository<TodoList, IIndividual>.Set(TodoList entity, IIndividual individual)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        TodoList IEntityRepository<TodoList, IIndividual>.Update(TodoList entity, IIndividual individual)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

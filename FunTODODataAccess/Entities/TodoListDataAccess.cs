@@ -1,16 +1,26 @@
 ﻿using FunTODOModels.Entity;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FunTODODataAccess.Entities
 {
-    public class TodoListDataAccess : IDataAccess<TodoList>
+    public class TodoListDataAccess : IEntityDataAccess<TodoList>
     {
-        private IDataBase DataBase;
-        public TodoListDataAccess(IDataBase database)
+        private readonly IDataBase dataBase;
+
+        public TodoListDataAccess(IDataBase dataBase)
         {
-            this.DataBase = database;  
+            this.dataBase = dataBase;
+        }
+
+        public bool DeleteByUserName(string identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TodoList> GetAllByUsername(string identification, string userName)
+        {
+            throw new NotImplementedException();
         }
 
         public TodoList GetByID(int iD)
@@ -18,9 +28,25 @@ namespace FunTODODataAccess.Entities
             throw new NotImplementedException();
         }
 
-        public TodoList GetByUserID(string iD)
+        public TodoList GetByUsername(string iD, FunTODOModels.Individual.IIndividual individual)
         {
-            return DataBase.TodoListByUserID(iD) as TodoList;//database should return datatable and conversion should happen here
+            throw new NotImplementedException();
+
+        }
+
+        public TodoList GetByUsername(string identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TodoList SetByUsername(object identification, string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TodoList UpdateByUsername(object identification, string userName)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,19 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 using FunTODOCommon;
 using FunTODOLogic.Adapters;
 using FunTODOModels.Entity;
+using FunTODOModels.Process;
 using FunTODOWebSite.Adapters;
 using FunTODOWebSite.Models.Entity;
+using FunTODOWebSite.Models.Login;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace FunTODO
 {
@@ -30,8 +27,10 @@ namespace FunTODO
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();//default cookie based authentication of core mvc
             //Register Website Only Dependencies
             services.AddSingleton<IDomainToApplicationAdapter<TodoList, TodoListViewModel>, TodoListAdapter>();
+            services.AddSingleton<IApplicationToDomainAdapter<LoginModel, LoginCredentials>,LoginAdapter>();
             //Register Common Dependencies
             FunTodoDependencyService.ConfigureDependencies(services);
         }
@@ -54,6 +53,13 @@ namespace FunTODO
             app.UseStaticFiles();
 
             app.UseRouting();
+            //var cookiePolicyOptions = new CookiePolicyOptions//default is lax , this is to set to something else
+            //{
+            //    MinimumSameSitePolicy = SameSiteMode.Strict,
+            //};
+            //app.UseCookiePolicy(cookiePolicyOptions);
+            app.UseCookiePolicy();//the default policy is lax
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

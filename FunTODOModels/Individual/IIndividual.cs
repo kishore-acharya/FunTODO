@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FunTODOModels.Individual
+﻿namespace FunTODOModels.Individual
 {
-    interface IIndividual
+    public interface IIndividual
     {
+        int ID { get; set; }
+        string UserName { get; set; }
     }
 }

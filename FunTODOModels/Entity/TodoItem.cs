@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace FunTODOModels.Entity
+﻿namespace FunTODOModels.Entity
 {
-    public class TodoItem:IEntity,ITodoItem
+    public class TodoItem : ITodoItem
     {
         public TodoItem(string Text)
         {
-            this.Text = Text;
+            this.TextValue = Text;
         }
-        private string textvalue { get; set; }
-        public string Text { get => this.textvalue; set => this.textvalue=value; }
+        private string textValue { get; set; }
+        public string TextValue { get => this.textValue; set => this.textValue = value; }
     }
 }

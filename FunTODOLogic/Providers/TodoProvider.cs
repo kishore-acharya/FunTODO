@@ -1,19 +1,20 @@
-﻿using FunTODORepository.Entities;
-using FunTODOModels.Entity;
+﻿using FunTODOModels.Entity;
+using FunTODOModels.Individual;
+using FunTODORepository.Entities;
 
 namespace FunTODOLogic.Providers
 {
-    public class TodoProvider: ITodoProvider
+    public class TodoProvider : ITodoProvider
     {
-        IEntityListRepository<TodoList> TodoListRepository;
-        public TodoProvider(IEntityListRepository<TodoList> TodoListRepository)
+        IEntityRepository<TodoList, IIndividual> TodoListRepository;
+        public TodoProvider(IEntityRepository<TodoList,IIndividual> TodoListRepository)
         {
             this.TodoListRepository = TodoListRepository;
         }
-        public TodoList GetTodoListForUserID(string UserID)
+       
+        public TodoList GetTodoListForUserID(string listID, IIndividual individual)
         {
-            return TodoListRepository.GetByUserID(UserID);
-           
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace FunTODOWebSite
+﻿namespace FunTODOWebSite
 {
     public class TODOListTODO
     {
 
-        //TODO:do not use as in TODOcontroller
         //TODO:Local db
         //TODO:Users
         //TODO:User Login
