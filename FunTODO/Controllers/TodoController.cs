@@ -31,7 +31,7 @@ namespace FunTODO.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("Todo/TodoList/{userID?}")]
-        [Authenticate]
+        [Authorize(Roles = "NormalUser")]
         public IActionResult TodoList(string listID)
         {
             var claims = HttpContext.User.Claims;

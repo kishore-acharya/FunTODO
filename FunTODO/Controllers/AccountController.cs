@@ -10,18 +10,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace FunTODOWebSite.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
         private IUserProvider userProvider;
         private ILoginProcessor loginProcessor;
         private IApplicationToDomainAdapter<LoginModel, LoginCredentials> loginAdapter;
-
-        public LoginController(IUserProvider userProvider,
+        public AccountController(IUserProvider userProvider,
                                 ILoginProcessor loginProcessor,
                                 IApplicationToDomainAdapter<LoginModel,LoginCredentials> loginAdapter)
         {
@@ -31,14 +33,14 @@ namespace FunTODOWebSite.Controllers
         }
 
         [HttpGet]
-        [Route("login")]
-        public IActionResult Login()
+        [Route("account/login/{ReturnUrl?}")]
+        public IActionResult Login(string returnUrl)
         {
-
-            return View(new LoginModel());
+            ViewBag.ReturnUrl = returnUrl;
+            return View(new LoginModel(){ReturnUrl=returnUrl});
         }
         [HttpPost]
-        [Route("login")]
+        [Route("account/login/{ReturnUrl?}")]
         public async Task<IActionResult> LoginAsync(LoginModel login)
         {
             if (!ModelState.IsValid)
@@ -84,11 +86,29 @@ namespace FunTODOWebSite.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
-                return RedirectToAction("TodoList","Todo");
+                if (Url.IsLocalUrl(login.ReturnUrl))
+                {
+                    return Redirect(login.ReturnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+               
             }
 
             return View();
 
+        }
+
+        [HttpGet]
+        [Route(("account/logout"))]
+        [Route("logout")]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await HttpContext.SignOutAsync();
+            return View();
+            //return RedirectToAction("Index", "Home");
         }
     }
 }

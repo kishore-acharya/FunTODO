@@ -27,7 +27,7 @@ namespace FunTODO
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();//understand
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();//default cookie based authentication of core mvc
             //Register Website Only Dependencies
             services.AddSingleton<IDomainToApplicationAdapter<TodoList, TodoListViewModel>, TodoListAdapter>();
             services.AddSingleton<IApplicationToDomainAdapter<LoginModel, LoginCredentials>,LoginAdapter>();
@@ -58,7 +58,7 @@ namespace FunTODO
             //    MinimumSameSitePolicy = SameSiteMode.Strict,
             //};
             //app.UseCookiePolicy(cookiePolicyOptions);
-
+            app.UseCookiePolicy();//the default policy is lax
             app.UseAuthentication();
 
             app.UseAuthorization();

@@ -5,8 +5,9 @@ namespace FunTODOWebSite.Models.Login
     public class LoginModel : IApplicationModel
     {
         [Required]
-        public string UserName { get; set; }
+        public string UserName { get;  set; }
         [Required]
         public string Password { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }
