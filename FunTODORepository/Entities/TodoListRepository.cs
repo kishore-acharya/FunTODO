@@ -23,9 +23,9 @@ namespace FunTODORepository.Entities
             return TodoListDataAccess.GetByUsername(identification,individual.UserName);
         }
 
-        public IEnumerable<TodoList> GetAll(string identification, IIndividual individual)
+        public IEnumerable<TodoList> GetAll(IIndividual individual)
         {
-            return TodoListDataAccess.GetAllByUsername(identification,individual.UserName);
+            return TodoListDataAccess.GetAllByUsername(individual.UserName);
         }
 
         public TodoList Set(TodoList entity, IIndividual individual)

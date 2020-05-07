@@ -59,7 +59,7 @@ namespace FunTODODataAccess
             //string result = GetGeneralInformation(command).First()["Status"].ToString();
         }
 
-        public DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcedureWithParams)
         {
 
             try
@@ -86,7 +86,7 @@ namespace FunTODODataAccess
             }
 
         }
-        public IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcedureWithParams)
         {
 
             using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
@@ -107,7 +107,7 @@ namespace FunTODODataAccess
             }
 
         }
-        public void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public void ExecuteNonQueryProcedure(StoredProcdureWithParams storedProcedureWithParams)
         {
             try
             {
@@ -130,5 +130,9 @@ namespace FunTODODataAccess
             }
         }
 
+        public bool ExecuteScalarProcedure(StoredProcdureWithParams storedProcedureWithParams)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

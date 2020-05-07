@@ -18,7 +18,7 @@ namespace FunTODODataAccess.Entities
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TodoList> GetAllByUsername(string identification, string userName)
+        public IEnumerable<TodoList> GetAllByUsername(string userName)
         {
             throw new NotImplementedException();
         }

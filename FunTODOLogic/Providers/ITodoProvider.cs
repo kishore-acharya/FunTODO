@@ -1,10 +1,11 @@
-﻿using FunTODOModels.Entity;
+﻿using System.Collections.Generic;
+using FunTODOModels.Entity;
 using FunTODOModels.Individual;
 
 namespace FunTODOLogic.Providers
 {
     public interface ITodoProvider : IFunTodoLogic
     {
-        TodoList GetTodoListForUserID(string listID, IIndividual individual);
+        IEnumerable<TodoList> GetAllTodoLists(IIndividual individual);
     }
 }
