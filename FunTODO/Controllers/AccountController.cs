@@ -46,13 +46,12 @@ namespace FunTODOWebSite.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, login.UserName),
+                    new Claim("Username", login.UserName),
                     new Claim(ClaimTypes.Role, "NormalUser")
                 };
 
                 var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
                 var authProperties = new AuthenticationProperties();
                 await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,

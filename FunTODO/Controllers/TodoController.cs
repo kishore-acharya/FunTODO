@@ -1,4 +1,5 @@
-﻿using FunTODOLogic.Adapters;
+﻿using System.Linq;
+using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOModels.Entity;
 using FunTODOWebSite.Models.Entity;
@@ -35,9 +36,9 @@ namespace FunTODOWebSite.Controllers
         {
             var claims = HttpContext.User.Claims;
             bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
-
-            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetAllTodoLists(base.GetUser()));
+            //HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
+            var usertemp = base.GetUser();
+            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
             return View(todoListViewModel);
         }
     }

@@ -13,7 +13,11 @@ namespace FunTODOLogic.Providers
         }
         public User GetUserByUserName(string username)
         {
-            return userRepository.GetUserByUserName(username);
+            return new User()
+            {
+                UserName = "kishore101"
+            };
+            //return userRepository.GetUserByUserName(username);//TODO:actual implementaion
         }
     }
 }

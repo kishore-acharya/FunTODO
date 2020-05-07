@@ -26,8 +26,9 @@ namespace FunTODOWebSite.Controllers
             var user = HttpContext.User;
             if (user.Identity.IsAuthenticated)
             {
-                return userProvider.GetUserByUserName(user.Identity.Name);
+                return userProvider.GetUserByUserName(user.Claims.FirstOrDefault(c => c.Type == "Username").Value);
             }
+
             return null;
             
         }
