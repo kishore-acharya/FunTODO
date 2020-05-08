@@ -27,17 +27,15 @@ namespace FunTODOWebSite.Controllers
 
         /////Todo/TodoList
         /// <summary>
-        /// Provides a single TODO list by id for a user
+        /// Provides a single Todo list by id for a user
         /// </summary>
         /// <returns></returns>
-        [Route("Todo/TodoList/{userID?}")]
+        [Route("Todo/TodoList")]
         [Authorize(Roles = "NormalUser")]
-        public IActionResult TodoList(string listID)
+        public IActionResult TodoList()
         {
             var claims = HttpContext.User.Claims;
             bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
-            //HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
-            var usertemp = base.GetUser();
             var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
             return View(todoListViewModel);
         }
