@@ -2,12 +2,9 @@
 {
     public class TODOListTODO
     {
-
-        //TODO:Local db
+        //TODO:account creation
         //TODO:Users
-        //TODO:User Login
-        //TODO:Security Layer
-        //TODO:authentication middleware
+        //TODO:Security 
         //TODO:Design Patterns
     }
 }
