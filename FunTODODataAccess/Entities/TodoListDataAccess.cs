@@ -35,7 +35,7 @@ namespace FunTODODataAccess.Entities
             IEnumerable<TodoList> todoListCollection = dt.AsEnumerable().Select(row =>
                 new TodoList
                 {
-                    TODOXML = row["list_data"].ToString(),
+                    TODOXML = row["list_data"].ToString()
                 });
             return todoListCollection;
         }
