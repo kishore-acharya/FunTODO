@@ -7,7 +7,7 @@
 </head>
 @*using tag helpers instead of html helpers in mvc*@
 <div class="container login-container">
-    <form asp-action="login">
+    <form class="login-form" asp-action="login">
         <input asp-for="ReturnUrl" type="hidden" value="@ViewBag.ReturnUrl" />
         <div class="imgcontainer">
             <img src="~/images/img_avatar.png" alt="Avatar" class="avatar">

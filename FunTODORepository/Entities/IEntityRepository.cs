@@ -7,7 +7,7 @@ namespace FunTODORepository.Entities
     public interface IEntityRepository<T,IIndividual>
     {
         T Get(string identification,IIndividual individual);
-        IEnumerable<T> GetAll(string identification, IIndividual individual);
+        IEnumerable<T> GetAll(IIndividual individual);
         T Set(T entity,IIndividual individual);
         T Update(T entity, IIndividual individual);
         bool Delete(string identification, IIndividual individual);

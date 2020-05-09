@@ -1,4 +1,6 @@
-﻿using FunTODOModels.Entity;
+﻿using System;
+using System.Collections.Generic;
+using FunTODOModels.Entity;
 using FunTODOModels.Individual;
 using FunTODORepository.Entities;
 
@@ -14,7 +16,12 @@ namespace FunTODOLogic.Providers
        
         public TodoList GetTodoListForUserID(string listID, IIndividual individual)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<TodoList> GetAllTodoLists(IIndividual individual)
+        {
+            return TodoListRepository.GetAll((individual));
         }
     }
 }

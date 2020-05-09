@@ -1,23 +1,21 @@
 ﻿using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOModels.Entity;
-using FunTODOWebSite.Controllers;
 using FunTODOWebSite.Models.Entity;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
-namespace FunTODO.Controllers
+namespace FunTODOWebSite.Controllers
 {
     public class TodoController : BaseController
     {
-        private readonly ITodoProvider TodoProvider;
-        private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> TodoListAdapter;
-        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter,IUserProvider userProvider) :base(userProvider)
+        private readonly ITodoProvider _todoProvider;
+        private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> _todoListAdapter;
+        public TodoController(ITodoProvider todoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter, IUserProvider userProvider) : base(userProvider)
         {
-            this.TodoProvider = TodoProvider;
-            this.TodoListAdapter = todoListAdapter;
+            this._todoProvider = todoProvider;
+            this._todoListAdapter = todoListAdapter;
         }
         [Route("Todo")]
         public IActionResult Main()
@@ -27,18 +25,14 @@ namespace FunTODO.Controllers
 
         /////Todo/TodoList
         /// <summary>
-        /// Provides a single TODO list by id for a user
+        /// Provides a single Todo list by id for a user
         /// </summary>
         /// <returns></returns>
-        [Route("Todo/TodoList/{userID?}")]
+        [Route("Todo/TodoList")]
         [Authorize(Roles = "NormalUser")]
-        public IActionResult TodoList(string listID)
+        public IActionResult TodoList()
         {
-            var claims = HttpContext.User.Claims;
-            bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);//signout user
-
-            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetTodoListForUserID(listID,base.GetUser()));
+            var todoListViewModel = _todoListAdapter.ConvertToApplication(_todoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
             return View(todoListViewModel);
         }
     }

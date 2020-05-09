@@ -9,7 +9,7 @@ namespace FunTODODataAccess
 {
     public class SqlUtil : IDataBase
     {
-        string connectionString;
+        readonly string connectionString;
         public SqlUtil(IConfiguration configuration)
         {
             this.connectionString = configuration.GetConnectionString("FuntoDB");
@@ -59,17 +59,20 @@ namespace FunTODODataAccess
             //string result = GetGeneralInformation(command).First()["Status"].ToString();
         }
 
-        public DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public DataTable GetDataTableFromProcedure(StoredProcedureWithParams storedProcedureWithParams)
         {
 
             try
             {
                 using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                    using (SqlCommand cmd = new SqlCommand(storedProcedureWithParams.procedurename, sqlconnection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                        foreach (SqlParameter parameter in storedProcedureWithParams.sqlParameterCollection)
+                        {
+                            cmd.Parameters.Add(parameter);
+                        }
                         sqlconnection.Open();
                         DataTable dataTable = new DataTable();
                         SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
@@ -80,21 +83,21 @@ namespace FunTODODataAccess
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new DataTable();
             }
 
         }
-        public IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcedureWithParams storedProcedureWithParams)
         {
 
             using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                using (SqlCommand sqlCommand = new SqlCommand(storedProcedureWithParams.procedurename, sqlconnection))
                 {
                     sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                    sqlCommand.Parameters.Add(storedProcedureWithParams.sqlParameterCollection);
                     sqlconnection.Open();
                     sqlconnection.Open();
                     SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -107,16 +110,16 @@ namespace FunTODODataAccess
             }
 
         }
-        public void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams)
+        public void ExecuteNonQueryProcedure(StoredProcedureWithParams storedProcedureWithParams)
         {
             try
             {
                 using (SqlConnection sqlconnection = new SqlConnection(this.connectionString))
                 {
-                    using (SqlCommand cmd = new SqlCommand(storedProcdureWithParams.procedurename, sqlconnection))
+                    using (SqlCommand cmd = new SqlCommand(storedProcedureWithParams.procedurename, sqlconnection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(storedProcdureWithParams.sqlParameterCollection);
+                        cmd.Parameters.Add(storedProcedureWithParams.sqlParameterCollection);
                         sqlconnection.Open();
                         cmd.ExecuteNonQuery();
                         sqlconnection.Close();
@@ -130,5 +133,9 @@ namespace FunTODODataAccess
             }
         }
 
+        public bool ExecuteScalarProcedure(StoredProcedureWithParams storedProcedureWithParams)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

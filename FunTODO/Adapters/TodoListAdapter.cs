@@ -11,6 +11,7 @@ namespace FunTODOWebSite.Adapters
         {
             var application = new TodoListViewModel();
             application.todoList = domain.TodoItemList;
+            application.todoTitle = domain.TodoTitle;
             return application;
         }
 

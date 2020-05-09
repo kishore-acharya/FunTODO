@@ -8,8 +8,9 @@ namespace FunTODODataAccess
     {
         DataTable GetDataTableFromQuery(string query);
         IEnumerable<IDataRecord> GetDataReaderFromQuery(string query);
-        DataTable GetDataTableFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
-        IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcdureWithParams storedProcdureWithParams);
-        void ExecureNonQueryProcedure(StoredProcdureWithParams storedProcdureWithParams);
+        DataTable GetDataTableFromProcedure(StoredProcedureWithParams storedProcedureWithParams);
+        IEnumerable<IDataRecord> GetDataReaderFromProcedure(StoredProcedureWithParams storedProcedureWithParams);
+        void ExecuteNonQueryProcedure(StoredProcedureWithParams storedProcedureWithParams);
+        bool ExecuteScalarProcedure(StoredProcedureWithParams storedProcedureWithParams);
     }
 }
