@@ -4,7 +4,7 @@
     margin:auto;
     max-width: 400px;
 }
-form {
+.login-form {
     border: 3px solid #f1f1f1;
 }
 
@@ -52,7 +52,6 @@ img.avatar {
     width: 40%;
     border-radius: 50%;
 }
-
 
 
 /* The "Forgot password" text */

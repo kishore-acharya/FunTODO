@@ -1,23 +1,21 @@
-﻿using System.Linq;
-using FunTODOLogic.Adapters;
+﻿using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOModels.Entity;
 using FunTODOWebSite.Models.Entity;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace FunTODOWebSite.Controllers
 {
     public class TodoController : BaseController
     {
-        private readonly ITodoProvider TodoProvider;
-        private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> TodoListAdapter;
-        public TodoController(ITodoProvider TodoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter,IUserProvider userProvider) :base(userProvider)
+        private readonly ITodoProvider _todoProvider;
+        private readonly IDomainToApplicationAdapter<TodoList, TodoListViewModel> _todoListAdapter;
+        public TodoController(ITodoProvider todoProvider, IDomainToApplicationAdapter<TodoList, TodoListViewModel> todoListAdapter, IUserProvider userProvider) : base(userProvider)
         {
-            this.TodoProvider = TodoProvider;
-            this.TodoListAdapter = todoListAdapter;
+            this._todoProvider = todoProvider;
+            this._todoListAdapter = todoListAdapter;
         }
         [Route("Todo")]
         public IActionResult Main()
@@ -34,9 +32,7 @@ namespace FunTODOWebSite.Controllers
         [Authorize(Roles = "NormalUser")]
         public IActionResult TodoList()
         {
-            var claims = HttpContext.User.Claims;
-            bool isauthenticated = HttpContext.User.Identity.IsAuthenticated;
-            var todoListViewModel = TodoListAdapter.ConvertToApplication(TodoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
+            var todoListViewModel = _todoListAdapter.ConvertToApplication(_todoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
             return View(todoListViewModel);
         }
     }

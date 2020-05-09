@@ -1,0 +1,16 @@
+﻿.page-container {
+}
+.add-items {
+    margin-bottom: 1.5rem;
+    overflow: hidden
+}
+
+    .add-items .todo-list-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        background: transparent
+    }
+
+    add-items .add-btn {
+    }
