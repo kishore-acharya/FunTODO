@@ -1,4 +1,5 @@
-﻿using FunTODOLogic.Adapters;
+﻿using System.Collections.Generic;
+using FunTODOLogic.Adapters;
 using FunTODOLogic.Providers;
 using FunTODOModels.Entity;
 using FunTODOWebSite.Models.Entity;
@@ -32,8 +33,10 @@ namespace FunTODOWebSite.Controllers
         [Authorize(Roles = "NormalUser")]
         public IActionResult TodoList()
         {
-            var todoListViewModel = _todoListAdapter.ConvertToApplication(_todoProvider.GetAllTodoLists(base.GetUser()).FirstOrDefault());
-            return View(todoListViewModel);
+           
+            IEnumerable<TodoListViewModel> todolistviewmodelcollection = new List<TodoListViewModel>();
+            todolistviewmodelcollection = _todoProvider.GetAllTodoLists(base.GetUser()).Select(x=>_todoListAdapter.ConvertToApplication(x));
+            return View(todolistviewmodelcollection);
         }
     }
 }
