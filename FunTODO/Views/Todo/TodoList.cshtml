@@ -4,10 +4,38 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/todo-card.css" />
+
 </head>
 <h1>TodoList</h1>
+<script type="text/javascript">
+    function addtodoList(){
+        var newCardTitle = $("#newTodoTitle").val();
+        $('#todoList').append(
+            $('<div/>')
+            .addClass("card")
+                .append(
+                    "<div/>"
+                )
+                .addClass("card-body")
+                    .append(
+                        $('<h4/>'
+                        )
+                        .addClass("card-header")
+                        .text(newCardTitle)    
+                )
+        );
+       // $("#todoList").append(newCardHTML);
+    }
+</script>
 <div class="jumbotron">
-    <div class="card-columns">
+    <div class="Add-Button">
+        <form class="form-inline">
+            <input id="newTodoTitle" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Add a new list" style="width: 20rem">
+            <button type="button" class="btn btn-outline-dark mb-2 mr-sm-2" onclick="addtodoList()">Add</button>
+        </form>
+    </div>
+    <div id="todoList" class="card-columns">
+
         @foreach (var todolist in Model)
         {
             <div class="card">
@@ -26,6 +54,7 @@
                 </div>
             </div>
         }
+
 
     </div>
 </div>

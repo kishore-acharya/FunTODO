@@ -21,7 +21,7 @@ namespace FunTODOWebSite.Controllers
         [Route("Todo")]
         public IActionResult Main()
         {
-            return View();
+            return RedirectToAction("TodoList");
         }
 
         /////Todo/TodoList
