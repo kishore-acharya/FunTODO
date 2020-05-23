@@ -8,29 +8,20 @@
 </head>
 <h1>TodoList</h1>
 <script type="text/javascript">
-    function addtodoList(){
+    function addtodoList() {
         var newCardTitle = $("#newTodoTitle").val();
-        $('#todoList').append(
-            $('<div/>')
-            .addClass("card")
-                .append(
-                    "<div/>"
-                )
-                .addClass("card-body")
-                    .append(
-                        $('<h4/>'
-                        )
-                        .addClass("card-header")
-                        .text(newCardTitle)    
-                )
-        );
-       // $("#todoList").append(newCardHTML);
+        var newCard = $('<div/>').addClass("card");
+        var newCardBody = $('<div/>').addClass("card-body");
+        var newCardHeader = $('<h4/>').addClass("card-header").text(newCardTitle);
+        newCardBody.append(newCardHeader);
+        newCard.append(newCardBody);
+        $('#todoList').append(newCard);
     }
 </script>
 <div class="jumbotron">
     <div class="Add-Button">
         <form class="form-inline">
-            <input id="newTodoTitle" type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Add a new list" style="width: 20rem">
+            <input id="newTodoTitle" type="text" class="form-control mb-2 mr-sm-2" placeholder="Add a new list" style="width: 20rem">
             <button type="button" class="btn btn-outline-dark mb-2 mr-sm-2" onclick="addtodoList()">Add</button>
         </form>
     </div>
